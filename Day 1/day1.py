@@ -24,30 +24,13 @@ import numpy as np
 # sweep report(your puzzle input) appears: each line is a measurement of the sea
 # floor depth as the sweep looks further and further away from the submarine.
 
-# The first order of business is to figure out how quickly the depth increases,
-# just so you know what you're dealing with - you never know if the keys will
-# get carried into deeper water by an ocean current or a fish or something.
 
-# To do this, count the number of times a depth measurement increases from the
-# previous measurement. (There is no measurement before the first measurement.)
+def part_1(a): return ((a[1:] - a[:-1]) > 0).sum()
 
 
-def part_1(a):
-    offset = np.delete(a, 0)
-    a = np.delete(a, -1)
-    diffs = offset - a
-    total = (diffs > 0).sum()
-    return total
+def part_2(a): return part_1(a[0:-2] + a[1:-1] + a[2:])
 
 
-def part_2(a):
-    window0 = a[0:-2]
-    window1 = a[1:-1]
-    window2 = a[2:]
-    total = window0 + window1 + window2
-    return part_1(total)
-
-
-ds = np.fromfile("depths.csv", sep=" ")
+ds = np.fromfile("Day 1/depths.csv", sep=" ")
 print(part_1(ds))
 print(part_2(ds))
