@@ -31,6 +31,6 @@ def part_1(a): return np.sum((a[1:] - a[:-1]) > 0)
 def part_2(a): return part_1(a[0:-2] + a[1:-1] + a[2:])
 
 
-ds = np.fromfile("Day 1/depths.csv", sep=" ")
+ds = np.fromfile("Day 1/depths.txt", sep=" ")
 print(part_1(ds))
 print(part_2(ds))
