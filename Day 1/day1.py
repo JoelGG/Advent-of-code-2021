@@ -25,7 +25,7 @@ import numpy as np
 # floor depth as the sweep looks further and further away from the submarine.
 
 
-def part_1(a): return ((a[1:] - a[:-1]) > 0).sum()
+def part_1(a): return np.sum((a[1:] - a[:-1]) > 0)
 
 
 def part_2(a): return part_1(a[0:-2] + a[1:-1] + a[2:])
