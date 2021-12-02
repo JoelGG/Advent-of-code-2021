@@ -21,9 +21,8 @@ def part_2(l, v):
     adjusted_depth = horz.sum()
     return adjusted_position * adjusted_depth
 
+
 # basic iterative solution for sanity check
-
-
 def part_2_iterative(l, v):
     horizontal = 0
     vertical = 0
