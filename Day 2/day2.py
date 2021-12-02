@@ -7,7 +7,10 @@ def part_1(l, v):
     return vt * hz
 
 
-# presented on multiple lines for clarity, could be combined into a single statement
+def part_1_compact(l, v):
+    return np.concatenate((v[l == "up"] * -1, v[l == "down"])).sum() * v[l == "forward"].sum()
+
+
 def part_2(l, v):
     # all vertical values, adjusted for up being negative
     verts = ((l == "up") * -1 * v) + ((l == "down") * v)
@@ -20,6 +23,11 @@ def part_2(l, v):
     # depth adjusted for aim
     adjusted_depth = horz.sum()
     return adjusted_position * adjusted_depth
+
+
+def part_2_compact(l, v):
+    return ((np.cumsum(((l == "up") * -1 * v) + ((l == "down") * v)) *
+             ((l == "forward") * v)).sum()) * ((l == "forward") * v).sum()
 
 
 # basic iterative solution for sanity check
@@ -45,7 +53,9 @@ labels = np.genfromtxt("Day 2/commands.txt", usecols=0,
 values = np.genfromtxt("Day 2/commands.txt", usecols=1)
 
 p1 = part_1(labels, values)
+p1c = part_1_compact(labels, values)
 p2 = part_2(labels, values)
+p2c = part_2_compact(labels, values)
 p2i = part_2_iterative(labels, values)
 
 print(p1)
